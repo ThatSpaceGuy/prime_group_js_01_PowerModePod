@@ -7,8 +7,9 @@ var scout = ["Scout", "6243", "74750", 5];
 
 var employees = [atticus, jem, boo, scout];
 var bonusArray = [];
-var i = 0;
 var bonusPercentage = 0;
+var bonusInDollars;
+var aAI;
 
 // calculateBonus written by Luis
 var calculateBonus = function(){
@@ -16,37 +17,39 @@ var calculateBonus = function(){
   for (i = 0; i < employees.length; i++) {
     bonusPercentage = 0;
 
-    checkNumber();
-    checkSalary();
-    checkRating();
+    checkNumber(employees[i]);
+    checkSalary(employees[i]);
+    checkRating(employees[i]);
     checkBonus();
+
+    createBonusArray(employees[i]);
   }
 }; // end calculateBonus
 
 // checkNumber written by Matt C.
-var checkNumber = function(){
-  if(employees[i][1].length==4){
+var checkNumber = function(emp){
+  if(emp[1].length==4){
     bonusPercentage+=5;
     console.log('in checkNumber',bonusPercentage);
   }
 }; //end checkNumber
 
 // checkSalary written by Ben J
-var checkSalary = function(){
+var checkSalary = function(emp){
   console.log('in checkSalary');
 
-  if(employees[i][2] > 65000){
+  if(emp[2] > 65000){
     bonusPercentage -= 1;
     console.log(bonusPercentage);
   }
 }; // end checkSalary
 
 // checkRating written by Lisa
-var checkRating = function(){
+var checkRating = function(emp){
   console.log('in checkRating');
   // if rating is 2 set bonus% to zero
-  console.log(employees[i]);
-  switch (employees[i][3]){
+  console.log(emp);
+  switch (emp[3]){
     case 3:
       bonusPercentage += 4;
       break;
@@ -71,6 +74,15 @@ var checkBonus = function(){
     console.log(bonusPercentage);
   }
 }; // end checkBonus
+
+// createBonusArray written by Matt C
+var createBonusArray = function(emp){
+  console.log('in createBonusArray');
+  bonusInDollars=Math.round(emp[2]*(bonusPercentage/100));
+  aAI= Math.round(parseInt(emp[2])+bonusInDollars);
+
+  bonusArray.push([emp[0],bonusPercentage,aAI,bonusInDollars]);
+}; // end createBonusArray
 
 calculateBonus();
 
