@@ -1,4 +1,5 @@
 console.log('scripts.js sourced!');
+// This program was written entirely in Power Mode
 
 var atticus = ["Atticus", "2405", "47000", 3];
 var jem = ["Jem", "62347", "63500", 4];
@@ -8,8 +9,7 @@ var scout = ["Scout", "6243", "74750", 5];
 var employees = [atticus, jem, boo, scout];
 var bonusArray = [];
 var bonusPercentage = 0;
-var bonusInDollars;
-var aAI;
+
 
 // calculateBonus written by Luis
 var calculateBonus = function(){
@@ -24,6 +24,7 @@ var calculateBonus = function(){
 
     createBonusArray(employees[i]);
   }
+  return bonusArray;
 }; // end calculateBonus
 
 // checkNumber written by Matt C.
@@ -78,15 +79,20 @@ var checkBonus = function(){
 // createBonusArray written by Matt C
 var createBonusArray = function(emp){
   console.log('in createBonusArray');
+  var bonusInDollars;
+  var aAI;
   bonusInDollars=Math.round(emp[2]*(bonusPercentage/100));
   aAI= Math.round(parseInt(emp[2])+bonusInDollars);
 
   bonusArray.push([emp[0],bonusPercentage,aAI,bonusInDollars]);
+
+
 }; // end createBonusArray
 
-calculateBonus();
+var finalArray = calculateBonus();
 
 // dispaly the arrays - by Luis
+console.log(finalArray);
 for (var i = 0; i < bonusArray.length; i++) {
-  console.log(bonusArray[i]);
+  console.log(finalArray[i]);
 }
